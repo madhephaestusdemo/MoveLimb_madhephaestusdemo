@@ -1,28 +1,24 @@
 import org.apache.commons.io.IOUtils;
 import  com.neuronrobotics.bowlerstudio.physics.*;
 import com.neuronrobotics.bowlerstudio.threed.*;
-
 def base;
 //Check if the device already exists in the device Manager
 if(args==null){
-	base=DeviceManager.getSpecificDevice( "CarlTheWalkingRobot",{
-			//If the device does not exist, prompt for the connection
-			
-			MobileBase m = MobileBaseLoader.fromGit(
-				"https://github.com/madhephaestus/carl-the-hexapod.git",
-				"CarlTheRobot.xml"
-				)
-			if(m==null)
-				throw new RuntimeException("Arm failed to assemble itself")
-			println "Connecting new device robot arm "+m
-			return m
+	base=DeviceManager.getSpecificDevice( "MediumKat",{
+			return ScriptingEngine.gitScriptRun(	"https://github.com/OperationSmallKat/SmallKat_V2.git", 
+											"loadRobot.groovy", 
+											[ "https://github.com/OperationSmallKat/greycat.git",
+											  "MediumKat.xml",
+											  "GameController_22"]
+			  )
 		})
 }else
 	base=args.get(0)
 
 
+
 println "Now we will move just one leg"
-DHParameterKinematics leg0 = base.getAllDHChains().get(0)
+DHParameterKinematics leg0 = base.getAllDHChains().get(1)
 double zLift=25
 println "Start from where the arm already is and move it from there with absolute location"
 TransformNR current = leg0.getCurrentPoseTarget();
