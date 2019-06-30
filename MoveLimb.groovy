@@ -4,17 +4,9 @@ import com.neuronrobotics.bowlerstudio.threed.*;
 def base;
 //Check if the device already exists in the device Manager
 if(args==null){
-	base=DeviceManager.getSpecificDevice( "MediumKat",{
-			return ScriptingEngine.gitScriptRun(	"https://github.com/OperationSmallKat/SmallKat_V2.git", 
-											"loadRobot.groovy", 
-											[ "https://github.com/OperationSmallKat/greycat.git",
-											  "MediumKat.xml",
-											  "GameController_22"]
-			  )
-		})
+	base=DeviceManager.getSpecificDevice( "MediumKat",{ScriptingEngine.gitScriptRun(	"https://github.com/OperationSmallKat/SmallKat_V2.git", "loadRobot.groovy", [ "https://github.com/OperationSmallKat/greycat.git", "MediumKat.xml","GameController_22"] )})
 }else
 	base=args.get(0)
-
 
 
 println "Now we will move just one leg"
