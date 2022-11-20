@@ -11,7 +11,7 @@ if(args==null){
 
 println "Now we will move just one leg"
 DHParameterKinematics leg0 = base.getAllDHChains().get(1)
-double zLift=25
+double zLift=5
 println "Start from where the arm already is and move it from there with absolute location"
 TransformNR current = leg0.getCurrentPoseTarget();
 current.translateZ(zLift);
